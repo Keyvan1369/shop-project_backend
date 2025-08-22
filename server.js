@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const authRouter = require("./routes/authRouter");
 const indexRouter = require("./routes/indexRouter");
 const userRouter = require("./routes/userRouter");
+const productRouter = require("./routes/productRouter")
 const app = express();
 const port = 5020;
 
@@ -19,6 +20,8 @@ app.use(
 app.use("/api",authRouter);
 app.use("/api",indexRouter);
 app.use("/api",userRouter);
+app.use("/api",productRouter);
+
 
 mongoose
   .connect(process.env.MONGO_URI)
