@@ -5,7 +5,8 @@ const mongoose = require("mongoose");
 const authRouter = require("./routes/authRouter");
 const indexRouter = require("./routes/indexRouter");
 const userRouter = require("./routes/userRouter");
-const productRouter = require("./routes/productRouter")
+const productRouter = require("./routes/productRouter");
+const contactRouter = require("./routes/contactRouter");
 const app = express();
 const port = 5020;
 
@@ -21,6 +22,8 @@ app.use("/api",authRouter);
 app.use("/api",indexRouter);
 app.use("/api",userRouter);
 app.use("/api",productRouter);
+app.use("/api",contactRouter);
+
 
 
 mongoose
