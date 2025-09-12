@@ -21,7 +21,7 @@ const allowedOrigins = [
 ];
 
 app.use(express.json());
-app.use(
+/* app.use(
   cors({
     origin: (origin, callback) => {
       if (!origin || allowedOrigins.includes(origin)) {
@@ -32,7 +32,8 @@ app.use(
     },
     credentials: true,
   })
-);
+); */
+app.use(cors({ origin: true, credentials: true }));
 
 
 app.use("/api", authRouter);
