@@ -14,6 +14,21 @@ const getProduct = async (req, res) => {
   }
 };
 
+const searchProduct = async (req, res) => {
+  try {
+    const { id, Pname } = req.body;
+    const filter = {};
+    if (Pname) filter.Pname = { $regex: Pname, $options: "i" };
+    if (id) filter.id = id;
+
+    const products = await Product.find(filter);
+    res.status(200).json(products);
+  } catch (error) {
+    console.error("Search error:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 const getSingleProduct = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
@@ -53,7 +68,6 @@ const createProduct = async (req, res) => {
   }
 };
 
-
 const updateProduct = async (req, res) => {
   try {
     const product = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -78,6 +92,7 @@ const deleteProduct = async (req, res) => {
 
 module.exports = {
   getProduct,
+  searchProduct,   
   getSingleProduct,
   createProduct,
   updateProduct,
